@@ -31,5 +31,11 @@ def login_user(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse(''))
+                return HttpResponseRedirect(reverse('Login_App:signup'))
     return render(request, 'Login_App/login.html', context={'form': form})
+
+
+@login_required
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('Login_App:signup'))

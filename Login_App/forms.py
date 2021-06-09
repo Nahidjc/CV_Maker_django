@@ -10,8 +10,8 @@ class SignForm(UserCreationForm):
         attrs={'placeholder': 'Enter Your Name'}))
     email = forms.EmailField(required=True, label="", widget=forms.TextInput(
         attrs={'placeholder': 'Enter Your Email'}))
-    zender = forms.ChoiceField(
-        choices=Profile._meta.get_field('zender').choices)
+    # zender = forms.ChoiceField(
+    #     choices=Profile._meta.get_field('zender').choices)
     password1 = forms.CharField(required=True, label="", widget=forms.PasswordInput(
         attrs={'placeholder': 'Enter Your Password'}))
     password2 = forms.CharField(required=True, label="", widget=forms.PasswordInput(
@@ -19,7 +19,7 @@ class SignForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'zender', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2')
 
 
 class LoginForm(AuthenticationForm):
