@@ -10,11 +10,30 @@
         margin-top: 150px;
     }
 
+    input,
+    optgroup,
+    select,
+    textarea {
+        margin: 5px;
+        padding: 8px;
+        width: 95%;
+        border-radius: 3px;
+        border: 1px solid #e5eaef;
+        font-family: inherit;
+        font-size: large;
+        line-height: inherit;
+    }
+
+    .button {
+        width: 95%;
+        margin-top: 15px;
+    }
+
     .login {
         width: 425px;
         border: 1px solid rgb(137, 217, 219);
         padding: 40px;
-        background-color: rgb(171, 252, 252);
+        background-color: #edf8fe;
     }
 </style>
 
@@ -28,12 +47,12 @@
             <form method="POST">
                 {{ form|crispy }}
                 {% csrf_token %}
-                <button type="submit" class="btn btn-success btn-sm">Create Account</button>
+                <button type="submit" class="btn btn-success button">Create Account</button>
             </form>
             <br>
         </div>
         <div class="login my-3">
-            <p>Have an account? <a href="#">Login here</a></p>
+            <p>Have an account? <a href="{% url 'Login_App:login' %}" class="primary">Login here</a></p>
         </div>
     </div>
 </center>

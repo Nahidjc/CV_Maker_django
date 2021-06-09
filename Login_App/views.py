@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from Login_App.forms import SignForm
+from Login_App.forms import SignForm, LoginForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .models import Profile
@@ -19,3 +19,17 @@ def sign_user(request):
             user_profile.save()
             return HttpResponseRedirect(reverse('Login_App:login'))
     return render(request, 'Login_App/signup.html', context={'form': form})
+
+
+def login_user(request):
+    form = LoginForm()
+    if request.method == 'POST':
+        form = LoginForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(reverse(''))
+    return render(request, 'Login_App/login.html', context={'form': form})
