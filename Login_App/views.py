@@ -17,5 +17,5 @@ def sign_user(request):
             user = form.save()
             user_profile = Profile(user=user)
             user_profile.save()
-            return HttpResponseRedirect(reverse('Login_AppLlogin'))
+            return HttpResponseRedirect(reverse('Login_App:login'))
     return render(request, 'Login_App/signup.html', context={'form': form})

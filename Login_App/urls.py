@@ -5,6 +5,6 @@ from .import views
 app_name = 'Login_App'
 
 urlpatterns = [
-    path('signup/', views.index, name='signup'),
+    path('signup/', views.sign_user, name='signup'),
 
 ]
