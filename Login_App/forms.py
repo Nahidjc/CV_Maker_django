@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.db import models
 
 
-class SignupForm(UserCreationForm):
+class SignForm(UserCreationForm):
     username = forms.CharField(required=True, label='', widget=forms.TextInput(
         attrs={'placeholder': 'Enter Your Name'}))
     email = forms.EmailField(required=True, label="", widget=forms.TextInput(
