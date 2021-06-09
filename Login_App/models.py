@@ -15,7 +15,7 @@ class Profile(models.Model):
         ('SheMale', 'SheMale'),
     )
 
-    zender = models.CharField(max_length=2, choices=sex)
+    zender = models.CharField(max_length=7, choices=sex)
 
     def __str__(self):
         return self.user.username
