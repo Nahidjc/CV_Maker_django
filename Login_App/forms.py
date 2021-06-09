@@ -20,3 +20,14 @@ class SignForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'zender', 'password1', 'password2')
+
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(required=True, label='', widget=forms.TextInput(
+        attrs={'placeholder': 'Enter Your Name'}))
+    password = forms.CharField(required=True, label="", widget=forms.PasswordInput(
+        attrs={'placeholder': 'Enter Your Password'}))
+
+    class Meta:
+        model = User
+        fields = ('username', 'password')
