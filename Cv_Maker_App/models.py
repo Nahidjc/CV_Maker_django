@@ -1,9 +1,13 @@
 from django.db import models
+from django.utils.text import slugify
 from django.contrib.auth.models import User
+import uuid
 # Create your models here.
 
 
 class CvMaker(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='post_user')
     fullname = models.CharField(
         max_length=200, verbose_name='own name', blank=False)
     email = models.EmailField(blank=False)
@@ -54,6 +58,16 @@ class CvMaker(models.Model):
     twitter = models.URLField(blank=True)
     linkdin = models.URLField(blank=True)
     youtube = models.URLField(blank=True)
+    publish_date = models.DateTimeField(auto_now_add=True)
+    update_date = models.DateTimeField(auto_now=True)
+    slug = models.SlugField(max_length=250, unique=True)
+
+    class Meta:
+        ordering = ['-publish_date']
+
+    def save(self):
+        self.slug = slugify(self.email + '-' + str(uuid.uuid4()))
+        super(CvMaker, self).save()
 
     def __str__(self):
         return self.fullname

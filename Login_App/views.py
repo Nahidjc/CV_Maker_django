@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .models import Profile
 from django.contrib.auth.models import User
-
 # Create your views here.
 
 
@@ -31,7 +30,7 @@ def login_user(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse('Login_App:signup'))
+                return HttpResponseRedirect(reverse('home'))
     return render(request, 'Login_App/login.html', context={'form': form})
 
 
