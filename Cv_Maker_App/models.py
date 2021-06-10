@@ -19,8 +19,8 @@ class CvMaker(models.Model):
     website = models.URLField(blank=True)
     present_address = models.CharField(max_length=250, blank=False)
     about = models.TextField(blank=False)
-    ssc_start_date = models.DateField(blank=False)
-    ssc_start_end = models.DateField(blank=False)
+    school_start_date = models.DateField(blank=False)
+    school_start_end = models.DateField(blank=False)
     subject = (
         ('Science', 'Science'),
         ('Business', 'Business'),
@@ -32,12 +32,13 @@ class CvMaker(models.Model):
     hsc_start_end = models.DateField(blank=False)
     hsc_subject = models.CharField(max_length=20, choices=subject, blank=False)
     college_name = models.CharField(max_length=250, blank=False)
+
     first_job = models.CharField(max_length=250, blank=True)
     first_job_title = models.CharField(max_length=250, blank=True)
-    first_job_date = models.CharField(max_length=10, blank=True)
+    first_job_date = models.CharField(max_length=10, blank=True, null=True)
     present_job = models.CharField(max_length=250, blank=True)
     present_job_title = models.CharField(max_length=250, blank=True)
-    present_job_date = models.DateField(blank=True)
+    present_job_date = models.DateField(blank=True, null=True)
 
     skils_title_1 = models.CharField(max_length=20, blank=True)
     skills_percentage_1 = models.IntegerField(blank=True)
