@@ -1,20 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title_block %} My Cv{% endblock %}
+{% block css_block %}
+<style>
+    .cv-design {
+        margin-top: 150px;
+    }
+</style>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cv List</title>
-</head>
+{% endblock %}
+
+{% block body_block %}
 
 <body>
-    {% if user.post_user %}
-    <h1>Yes</h1>
-    {% else %}
-    <h1>No</h1>
-    {% endif %}
+    <div class="container cv-design">
+
+
+        {% if user.post_user %}
+        {% for mycv in user.post_user.all %}
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th class="text-center" scope="col">User Name</th>
+                    <th class="text-center" scope="col">CV Name</th>
+                    <th class="text-center" scope="col">Email</th>
+                    <th class="text-center" scope="col">View CV</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">{{mycv.id}}</th>
+                    <td class="text-center">{{mycv.user}}</td>
+                    <td class="text-center">{{mycv.fullname}}</td>
+                    <td class="text-center">{{mycv.email}}</td>
+                    <td class="text-center"> <a href="{url 'Cv_Maker_App:cv' slug=mycv.slug }"><i
+                                class="fas fa-eye"></i></a>
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+
+        {% endfor %}
+        {% else %}
+        <h1>No</h1>
+        {% endif %}
+    </div>
+
 
 </body>
 
-</html>
+
+{% endblock %}
