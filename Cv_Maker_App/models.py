@@ -8,6 +8,51 @@ class CvMaker(models.Model):
         max_length=200, verbose_name='own name', blank=False)
     email = models.EmailField(blank=False)
     phone_number = models.CharField(max_length=12)
+    sex = (
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('SheMale', 'SheMale'),
+    )
+
+    zender = models.CharField(max_length=7, choices=sex)
     cv_picture = models.ImageField(upload_to='picture', blank=False)
     website = models.URLField(blank=True)
-    present_adress = models.CharField(max_length=250, blank=False)
+    present_address = models.CharField(max_length=250, blank=False)
+    about = models.TextField(blank=False)
+    ssc_start_date = models.DateField(blank=False)
+    ssc_start_end = models.DateField(blank=False)
+    subject = (
+        ('Science', 'Science'),
+        ('Business', 'Business'),
+        ('Humanities', 'Humanities')
+    )
+    ssc_subject = models.CharField(max_length=20, choices=subject, blank=False)
+    school_name = models.CharField(max_length=250, blank=False)
+    hsc_start_date = models.DateField(blank=False)
+    hsc_start_end = models.DateField(blank=False)
+    hsc_subject = models.CharField(max_length=20, choices=subject, blank=False)
+    college_name = models.CharField(max_length=250, blank=False)
+    first_job = models.CharField(max_length=250, blank=True)
+    first_job_title = models.CharField(max_length=250, blank=True)
+    first_job_date = models.CharField(max_length=10, blank=True)
+    present_job = models.CharField(max_length=250, blank=True)
+    present_job_title = models.CharField(max_length=250, blank=True)
+    present_job_date = models.DateField(blank=True)
+
+    skils_title_1 = models.CharField(max_length=20, blank=True)
+    skills_percentage_1 = models.IntegerField(blank=True)
+    skils_title_2 = models.CharField(max_length=20, blank=True)
+    skills_percentage_2 = models.IntegerField(blank=True)
+    skils_title_3 = models.CharField(max_length=20, blank=True)
+    skills_percentage_3 = models.IntegerField(blank=True)
+    skils_title_4 = models.CharField(max_length=20, blank=True)
+    skills_percentage_4 = models.IntegerField(blank=True)
+    skils_title_5 = models.CharField(max_length=20, blank=True)
+    skills_percentage_5 = models.IntegerField(blank=True)
+    facebook = models.URLField(blank=True)
+    twitter = models.URLField(blank=True)
+    linkdin = models.URLField(blank=True)
+    youtube = models.URLField(blank=True)
+
+    def __str__(self):
+        return self.fullname
