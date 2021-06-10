@@ -30,7 +30,10 @@ INSTALLED_APPS = [
     'Login_App',
     'Cv_Maker_App',
     'crispy_forms',
+    'django_cleanup'
+
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
