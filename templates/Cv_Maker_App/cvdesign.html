@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="{% static 'css/cvdesign.css' %}">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
+
 </head>
 
 <body>
 
-    <div class="resume">
+    <div class="resume" id="main">
         <div class="resume_left">
             <div class="resume_profile">
                 <img src="/media/{{cv.cv_picture}}" alt="profile_pic">
@@ -213,7 +214,32 @@
             </div>
         </div>
     </div>
+    <div class="card-footer text-center">
+        <button class="btn btn-primary btn-md clearfix hidden-print" id="download"> Download CV</button>
 
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script>
+        window.onload = function () {
+            document.getElementById("download")
+                .addEventListener("click", () => {
+                    const invoice = this.document.getElementById("main");
+                    console.log(invoice);
+                    console.log(window);
+                    var opt = {
+                        margin: 0.1,
+                        filename: '{{ cv.slug }}.pdf',
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: { scale: 4 },
+                        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+
+                    }
+                    html2pdf().set(opt).from(invoice).save();
+                });
+        };
+    </script>
 </body>
+
 
 </html>
