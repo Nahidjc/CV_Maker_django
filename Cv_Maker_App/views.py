@@ -1,5 +1,7 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
-from .models import CvMaker
+from .models import CvMaker, PracticeModel
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
@@ -10,11 +12,41 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.views import View
 from xhtml2pdf import pisa
+from .forms import CvMakerForm, PracticeForm
+import uuid
 # Create your views here.
 
 
 def home(request):
     return render(request, 'base.html')
+
+
+@login_required
+def Practice(request):
+    form = PracticeForm()
+    if request.method == 'POST':
+        form = PracticeForm(request.POST)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.user = request.user
+            data.save()
+            return HttpResponseRedirect(reverse('home'))
+    return render(request, 'Cv_Maker_App/prac.html', context={'form': form})
+
+
+@login_required
+def CreateCv(request):
+    form = CvMakerForm()
+    if request.method == 'POST':
+        form = CvMakerForm(request.POST)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.user = request.user
+            data.slug = data.fullname.replace(
+                " ", "-") + "-" + str(uuid.uuid4())
+            data.save()
+            return HttpResponseRedirect(reverse('home'))
+    return render(request, 'Cv_Maker_App/create-cv.html', context={'form': form})
 
 
 @login_required

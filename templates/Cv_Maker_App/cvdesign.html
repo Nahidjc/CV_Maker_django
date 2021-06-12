@@ -219,25 +219,27 @@
 
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script> -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script>
-        window.onload = function () {
-            document.getElementById("download")
-                .addEventListener("click", () => {
-                    const invoice = this.document.getElementById("main");
-                    console.log(invoice);
-                    console.log(window);
-                    var opt = {
-                        margin: 0.1,
-                        filename: '{{ cv.slug }}.pdf',
-                        image: { type: 'jpeg', quality: 0.98 },
-                        html2canvas: { scale: 4 },
-                        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        $('#download').click(function () {
 
-                    }
-                    html2pdf().set(opt).from(invoice).save();
-                });
-        };
+            var w = document.getElementById("main").offsetWidth;
+            var h = document.getElementById("main").offsetHeight;
+            html2canvas(document.getElementById("main"), {
+                dpi: 300, // Set to 300 DPI
+                scale: 3, // Adjusts your resolution
+                onrendered: function (canvas) {
+                    var img = canvas.toDataURL("image/jpeg", 1);
+                    var doc = new jsPDF('L', 'px', [w, h]);
+                    doc.addImage(img, 'JPEG', 0, 0, w, h);
+                    filename: '{{ cv.id }}.pdf',
+                        doc.save(filename);
+                }
+            });
+        });
     </script>
 </body>
 

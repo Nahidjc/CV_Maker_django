@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title_block %} Sign up{% endblock %}
+{% block css_block %}
+<style>
+    .sign-up {
+        width: 550px;
+        border: 1px solid #ccc;
+        padding: 40px;
+        margin-top: 150px;
+        border-bottom: 2px silver;
+        margin-bottom: 20px;
+    }
+
+    input,
+    optgroup,
+    select,
+    textarea {
+        margin: 5px;
+        padding: 8px;
+        width: 95%;
+        border-radius: 3px;
+        border: 1px solid #e5eaef;
+        font-family: inherit;
+        font-size: large;
+        line-height: inherit;
+    }
+
+    .button {
+        width: 95%;
+        margin-top: 15px;
+    }
+</style>
+
+{% endblock %}
+
+{% block body_block %}
+<center>
+    <div class="form-container">
+        <div class="sign-up">
+            <h4>CV Form</h4><br>
+
+            <form method="POST" enctype="multipart/form-data">
+                {{ form | crispy }}
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary button">Upload</button>
+            </form>
+            <br>
+        </div>
+    </div>
+</center>
+
+{% endblock %}

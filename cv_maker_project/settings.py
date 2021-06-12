@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'Login_App',
     'Cv_Maker_App',
     'crispy_forms',
-    'django_cleanup'
+    'django_cleanup.apps.CleanupConfig',
 
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

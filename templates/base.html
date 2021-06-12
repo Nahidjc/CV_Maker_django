@@ -36,13 +36,13 @@
             <ul>
                 {% if user.is_authenticated %}
 
-                <li><a href="#">Create Your CV </a></li>
+                <li><a href="{% url 'Cv_Maker_App:create-cv' %}">Create Your CV </a></li>
                 <li><a href="{% url 'Cv_Maker_App:my_cv' %}">Collect CV </a></li>
                 <li><a href="#">Edit Profile</a></li>
                 <li><a href="{% url 'Login_App:logout' %}"><i class="bi bi-box-arrow-right"></i>Logout</a></li>
                 {% else %}
 
-                <li><a href="#"> Create CV </a></li>
+                <li><a href="{% url 'Cv_Maker_App:create-cv' %}"> Create CV </a></li>
                 <li><a href="{% url 'Login_App:signup' %}">Sign Up</a></li>
                 <li><a href="{% url 'Login_App:login' %}"> Log In</a></li>
                 {% endif %}

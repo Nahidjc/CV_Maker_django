@@ -5,6 +5,18 @@ import uuid
 # Create your models here.
 
 
+class PracticeModel(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE)
+    fullname = models.CharField(
+        max_length=200, verbose_name='own name', blank=False)
+    picture = models.FileField(
+        verbose_name='Upload CV Picture', upload_to='pictures', blank=False)
+
+    def __str__(self):
+        return self.fullname
+
+
 class CvMaker(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='post_user')
@@ -17,9 +29,10 @@ class CvMaker(models.Model):
         ('Female', 'Female'),
         ('SheMale', 'SheMale'),
     )
-
+    birth_date = models.DateField(blank=False)
     zender = models.CharField(max_length=7, choices=sex)
-    cv_picture = models.ImageField(upload_to='picture', blank=False)
+    cv_picture = models.ImageField(
+        verbose_name='Upload CV Picture', upload_to='picture', blank=False)
     website = models.URLField(blank=True)
     present_address = models.CharField(max_length=250, blank=False)
     about = models.TextField(blank=False)
