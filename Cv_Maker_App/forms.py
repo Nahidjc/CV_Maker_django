@@ -16,7 +16,16 @@ class CvMakerForm(ModelForm):
     website = forms.URLField(required=True, label='', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Your Website Portfolio', })),
     present_address = forms.TextInput(),
-    birth_date = forms.DateField()
+    birth_date = forms.DateField(required=True, widget=forms.DateInput(
+        attrs={'class': 'form-control', 'type': 'date'}),)
+    school_start_date = forms.DateField(required=True, widget=forms.DateInput(
+        attrs={'class': 'form-control', 'type': 'date'}),)
+    school_start_end = forms.DateField(required=True, widget=forms.DateInput(
+        attrs={'class': 'form-control', 'type': 'date'}),)
+    hsc_start_date = forms.DateField(required=True, widget=forms.DateInput(
+        attrs={'class': 'form-control', 'type': 'date'}),)
+    hsc_start_end = forms.DateField(required=True, widget=forms.DateInput(
+        attrs={'class': 'form-control', 'type': 'date'}),)
 
     class Meta:
         model = CvMaker
