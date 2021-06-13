@@ -5,18 +5,6 @@ import uuid
 # Create your models here.
 
 
-class PracticeModel(models.Model):
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE)
-    fullname = models.CharField(
-        max_length=200, verbose_name='own name', blank=False)
-    picture = models.FileField(
-        verbose_name='Upload CV Picture', upload_to='pictures', blank=False)
-
-    def __str__(self):
-        return self.fullname
-
-
 class CvMaker(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='post_user')

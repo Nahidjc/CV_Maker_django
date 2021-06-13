@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.forms import fields, widgets
-from .models import CvMaker, PracticeModel
+from .models import CvMaker
 
 
 class CvMakerForm(ModelForm):
@@ -24,9 +24,3 @@ class CvMakerForm(ModelForm):
         widgets = {
 
         }
-
-
-class PracticeForm(ModelForm):
-    class Meta:
-        model = PracticeModel
-        fields = ('__all__')

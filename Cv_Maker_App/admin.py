@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import CvMaker, PracticeModel
+from .models import CvMaker
 
 admin.site.register(CvMaker)
-admin.site.register(PracticeModel)
