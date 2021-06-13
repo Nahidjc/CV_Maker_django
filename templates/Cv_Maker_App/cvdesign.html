@@ -4,11 +4,24 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Resume</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My CV</title>
     <link rel="stylesheet" href="{% static 'css/cvdesign.css' %}">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
 
-
+    <style>
+        .main {
+            margin-bottom: 15px;
+            border-top: 1px solid;
+            border-bottom: 1px solid;
+            background: lightblue;
+            padding: 0 17px;
+        }
+    </style>
 </head>
 
 <body>
@@ -214,32 +227,25 @@
             </div>
         </div>
     </div>
-    <div class="card-footer text-center">
-        <button class="btn btn-primary btn-md clearfix hidden-print" id="download"> Download CV</button>
-
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12 text-center mb-4">
+                <button class="btn btn-warning" id="downloadPdf">
+                    Download CV
+                </button>
+            </div>
+        </div>
     </div>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script> -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script>
-        $('#download').click(function () {
-
-            var w = document.getElementById("main").offsetWidth;
-            var h = document.getElementById("main").offsetHeight;
-            html2canvas(document.getElementById("main"), {
-                dpi: 300, // Set to 300 DPI
-                scale: 3, // Adjusts your resolution
-                onrendered: function (canvas) {
-                    var img = canvas.toDataURL("image/jpeg", 1);
-                    var doc = new jsPDF('L', 'px', [w, h]);
-                    doc.addImage(img, 'JPEG', 0, 0, w, h);
-                    filename: '{{ cv.id }}.pdf',
-                        doc.save(filename);
-                }
+        document
+            .getElementById("downloadPdf")
+            .addEventListener("click", function download() {
+                const element = document.getElementById("main");
+                html2pdf()
+                    .from(element)
+                    .save();
             });
-        });
     </script>
 </body>
 
